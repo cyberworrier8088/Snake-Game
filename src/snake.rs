@@ -29,4 +29,17 @@ impl Snake {
             );
         }
     }
+
+    pub fn move_up(&mut self) {
+        let head = self.body[0];
+
+        let new_head = Position {
+            x: head.x,
+            y: head.y - 1,
+        };
+
+        self.body.insert(0, new_head);
+
+        self.body.pop();
+    }
 }
