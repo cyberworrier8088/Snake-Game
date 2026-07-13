@@ -21,7 +21,7 @@ async fn main() {
         move_timer += get_frame_time();
 
         if move_timer >= 0.2 {
-            snake.move_up();
+           snake.move_snake();
             move_timer = 0.0;
         }
 

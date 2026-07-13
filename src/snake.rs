@@ -1,8 +1,10 @@
 use macroquad::prelude::*;
 use crate::position::Position;
+use crate::keyboard::Direction;
 
 pub struct Snake {
     pub body: Vec<Position>,
+    pub direction: Direction,
 }
 
 
@@ -14,6 +16,7 @@ impl Snake {
                 Position { x: 10, y: 11 },
                 Position { x: 10, y: 12 },
             ],
+            direction: Direction::Up,
         }
     }
     
@@ -41,5 +44,25 @@ impl Snake {
         self.body.insert(0, new_head);
 
         self.body.pop();
+    }
+
+    pub fn move_snake(&mut self) {
+        match self.direction {
+            Direction::Up => {
+                self.move_up();
+            }
+
+            Direction::Down => {
+
+            }
+
+            Direction::Left => {
+
+            }
+
+            Direction::Right => {
+
+            }
+        }
     }
 }
