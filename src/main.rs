@@ -17,6 +17,8 @@ async fn main() {
 
         grid::grid();
 
+        snake.draw();
+
         next_frame().await;
     }
 }
