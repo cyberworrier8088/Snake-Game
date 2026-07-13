@@ -18,6 +18,25 @@ async fn main() {
     loop {
         clear_background(BLACK);
 
+        if is_key_pressed(KeyCode::Up) {
+            snake.direction = keyboard::Direction::Up;
+        }
+
+        if is_key_pressed(KeyCode::Down) {
+            snake.direction = keyboard::Direction::Down;
+        
+        }
+
+        if is_key_pressed(KeyCode::Left) {
+            snake.direction = keyboard::Direction::Left;
+        
+        }
+
+        if is_key_pressed(KeyCode::Right) {
+            snake.direction = keyboard::Direction::Right;
+        
+        }
+
         move_timer += get_frame_time();
 
         if move_timer >= 0.2 {

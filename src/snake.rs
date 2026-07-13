@@ -46,6 +46,45 @@ impl Snake {
         self.body.pop();
     }
 
+    pub fn move_down(&mut self) {
+        let head = self.body[0];
+
+        let new_head = Position {
+            x: head.x,
+            y: head.y + 1,
+        };
+
+        self.body.insert(0, new_head);
+
+        self.body.pop();
+    }
+
+    pub fn move_left(&mut self) {
+        let head = self.body[0];
+
+        let new_head = Position {
+            x: head.x -1,
+            y: head.y,
+        };
+
+        self.body.insert(0, new_head);
+
+        self.body.pop();
+    }
+
+    pub fn move_right(&mut self) {
+        let head = self.body[0];
+
+        let new_head = Position {
+            x: head.x + 1,
+            y: head.y,
+        };
+
+        self.body.insert(0, new_head);
+
+        self.body.pop();
+    }
+
     pub fn move_snake(&mut self) {
         match self.direction {
             Direction::Up => {
@@ -53,15 +92,15 @@ impl Snake {
             }
 
             Direction::Down => {
-
+                self.move_down();
             }
 
             Direction::Left => {
-
+                self.move_left();
             }
 
             Direction::Right => {
-
+                self.move_right();
             }
         }
     }
