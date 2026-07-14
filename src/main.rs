@@ -6,6 +6,7 @@ mod position;
 mod snake;
 mod keyboard;
 mod food;
+mod game_over;
 
 // this function is main funtion
 #[macroquad::main("Snake Game")]
@@ -20,8 +21,13 @@ async fn main() {
 
     loop {
         clear_background(BLACK);
-        
 
+        if game_over {
+            game_over::draw_game_over(game_over);
+            next_frame().await;
+            continue;
+        }
+        
         if is_key_pressed(KeyCode::Up) && snake.direction != keyboard::Direction::Down {
             snake.direction = keyboard::Direction::Up;
         }

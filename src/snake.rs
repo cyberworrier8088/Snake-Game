@@ -1,6 +1,7 @@
 use macroquad::prelude::*;
 use crate::position::Position;
 use crate::keyboard::Direction;
+use crate::grid::GRID_SIZE;
 
 pub struct Snake {
     pub body: Vec<Position>,
@@ -22,12 +23,15 @@ impl Snake {
     
     // i am drawing a snake here
     pub fn draw(&self) {
+
+        let cell_size = screen_width() / GRID_SIZE as f32;
+
         for part in &self.body {
             draw_rectangle(
-                part.x as f32 * 32.0,
-                part.y as f32 * 32.0,
-                32.0,
-                32.0,
+                part.x as f32 * cell_size,
+                part.y as f32 * cell_size,
+                cell_size,
+                cell_size,
                 GREEN,
             );
         }
