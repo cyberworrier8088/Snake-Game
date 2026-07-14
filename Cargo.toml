@@ -5,12 +5,11 @@ edition = "2024"
 
 [dependencies]
 macroquad = "0.4"
-rand = "0.9"
 
 
 [profile.release]
 opt-level = 3          # maximize speed optimizations
-lto = true             # enable Link-Time Optimization across all crates
+lto = true             # enable link-time optimization across all crates
 codegen-units = 1      # reduce parallel compilation to allow deeper optimizations
 panic = "abort"        # remove stack unwinding to shrink binary size and speed up panics
 strip = true           # automatically strip symbols and debug information

@@ -24,6 +24,12 @@ async fn main() {
 
         if game_over {
             game_over::draw_game_over();
+            if is_key_pressed(KeyCode::R) {
+                snake = snake::Snake::new();
+                food = food::Food::new();
+                game_over = false;
+                move_timer = 0.0;
+            }
             next_frame().await;
             continue;
         }
@@ -63,11 +69,17 @@ async fn main() {
             move_timer = 0.0;
         }
 
-        grid::grid();
+        // Shared cell size and centering offset calculations for dynamic resizing
+        let grid_pixels = screen_width().min(screen_height());
+        let cell_size = grid_pixels / grid::GRID_SIZE as f32;
+        let offset_x = (screen_width() - grid_pixels) / 2.0;
+        let offset_y = (screen_height() - grid_pixels) / 2.0;
 
-        food.draw();
+        grid::grid(offset_x, offset_y, cell_size);
 
-        snake.draw();
+        food.draw(offset_x, offset_y, cell_size);
+
+        snake.draw(offset_x, offset_y, cell_size);
 
         next_frame().await;
     }

@@ -16,11 +16,10 @@ impl Food {
         }
     }
 
-    pub fn draw(&self) {
-        let cell_size = screen_width() / crate::grid::GRID_SIZE as f32;
+    pub fn draw(&self, offset_x: f32, offset_y: f32, cell_size: f32) {
         draw_rectangle(
-            self.position.x as f32 * cell_size,
-            self.position.y as f32 * cell_size,
+            offset_x + self.position.x as f32 * cell_size,
+            offset_y + self.position.y as f32 * cell_size,
             cell_size,
             cell_size,
             RED,

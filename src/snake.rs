@@ -22,14 +22,11 @@ impl Snake {
     }
     
     // i am drawing a snake here
-    pub fn draw(&self) {
-
-        let cell_size = screen_width() / GRID_SIZE as f32;
-
+    pub fn draw(&self, offset_x: f32, offset_y: f32, cell_size: f32) {
         for part in &self.body {
             draw_rectangle(
-                part.x as f32 * cell_size,
-                part.y as f32 * cell_size,
+                offset_x + part.x as f32 * cell_size,
+                offset_y + part.y as f32 * cell_size,
                 cell_size,
                 cell_size,
                 GREEN,
