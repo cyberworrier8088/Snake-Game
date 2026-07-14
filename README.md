@@ -15,6 +15,4 @@ A classic Snake Game built in Rust using the macroquad crate.
 ## ScreenShot
 > Add a screenshot here.
 
-```
-demo\screenshot.png
-```
+![Demo](demo/screenshot.png)
