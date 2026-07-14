@@ -115,4 +115,17 @@ impl Snake {
 
         self.body.push(tail);
     }
+
+    pub fn hit_self(&self) -> bool {
+        println!("Head: {:?}", self.body[0]);
+        let head = self.body[0];
+
+        for part in &self.body[1..] {
+            if *part == head {
+                return true;
+            }
+        }
+
+        false
+    }
 }

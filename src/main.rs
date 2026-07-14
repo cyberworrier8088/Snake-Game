@@ -14,35 +14,39 @@ async fn main() {
     let mut food = food::Food::new();
 
     let mut move_timer = 0.0;
+    let mut game_over = false;
 
     println!("The Snake Length: {}", snake.body.len());
 
     loop {
         clear_background(BLACK);
+        
 
-        if is_key_pressed(KeyCode::Up) {
+        if is_key_pressed(KeyCode::Up) && snake.direction != keyboard::Direction::Down {
             snake.direction = keyboard::Direction::Up;
         }
 
-        if is_key_pressed(KeyCode::Down) {
+        if is_key_pressed(KeyCode::Down) && snake.direction != keyboard::Direction::Up {
             snake.direction = keyboard::Direction::Down;
         
         }
 
-        if is_key_pressed(KeyCode::Left) {
+        if is_key_pressed(KeyCode::Left) && snake.direction != keyboard::Direction::Right {
             snake.direction = keyboard::Direction::Left;
-        
         }
 
-        if is_key_pressed(KeyCode::Right) {
+        if is_key_pressed(KeyCode::Right) && snake.direction != keyboard::Direction::Left {
             snake.direction = keyboard::Direction::Right;
-        
         }
 
         move_timer += get_frame_time();
 
         if move_timer >= 0.2 {
            snake.move_snake();
+
+           if snake.hit_self() {
+                game_over = true;
+           }
 
            if snake.eat(food.position) {
                snake.grow();
