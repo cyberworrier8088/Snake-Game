@@ -1,8 +1,6 @@
 use macroquad::prelude::*;
-use crate::snake::Snake;
-use crate::keyboard::Direction;
 
-pub fn draw_game_over(game_over: bool) {
+pub fn draw_game_over() {
     draw_text(
         "GAME OVER",
         140.0,

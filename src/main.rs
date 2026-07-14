@@ -23,7 +23,7 @@ async fn main() {
         clear_background(BLACK);
 
         if game_over {
-            game_over::draw_game_over(game_over);
+            game_over::draw_game_over();
             next_frame().await;
             continue;
         }

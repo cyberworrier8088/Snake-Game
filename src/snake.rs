@@ -40,10 +40,15 @@ impl Snake {
     pub fn move_up(&mut self) {
         let head = self.body[0];
 
-        let new_head = Position {
+        let mut new_head = Position {
             x: head.x,
             y: head.y - 1,
         };
+
+        if new_head.y < 0 {
+            println!("WRAP UP");
+            new_head.y = GRID_SIZE - 1;
+        }
 
         self.body.insert(0, new_head);
 
@@ -53,10 +58,16 @@ impl Snake {
     pub fn move_down(&mut self) {
         let head = self.body[0];
 
-        let new_head = Position {
+        let mut new_head = Position {
             x: head.x,
             y: head.y + 1,
         };
+
+        if new_head.y >= GRID_SIZE{
+
+            println!("WRAP DOWN");
+            new_head.y = 0;
+        }
 
         self.body.insert(0, new_head);
 
@@ -66,10 +77,15 @@ impl Snake {
     pub fn move_left(&mut self) {
         let head = self.body[0];
 
-        let new_head = Position {
+        let mut new_head = Position {
             x: head.x -1,
             y: head.y,
         };
+
+        if new_head.x < 0 {
+            println!("WRAP LEFT");
+            new_head.x = GRID_SIZE - 1;
+        }
 
         self.body.insert(0, new_head);
 
@@ -79,10 +95,15 @@ impl Snake {
     pub fn move_right(&mut self) {
         let head = self.body[0];
 
-        let new_head = Position {
+        let mut new_head = Position {
             x: head.x + 1,
             y: head.y,
         };
+
+        if new_head.x >= GRID_SIZE {
+            println!("WRAP RIGHT");
+            new_head.x = 0;
+        }
 
         self.body.insert(0, new_head);
 

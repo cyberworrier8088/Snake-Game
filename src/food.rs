@@ -17,11 +17,12 @@ impl Food {
     }
 
     pub fn draw(&self) {
+        let cell_size = screen_width() / crate::grid::GRID_SIZE as f32;
         draw_rectangle(
-            self.position.x as f32 * 32.0,
-            self.position.y as f32 * 32.0,
-            32.0,
-            32.0,
+            self.position.x as f32 * cell_size,
+            self.position.y as f32 * cell_size,
+            cell_size,
+            cell_size,
             RED,
         );
     }
@@ -29,8 +30,8 @@ impl Food {
 
     pub fn respawn(&mut self) {
         self.position = Position {
-            x: macroquad::rand::gen_range(0, 20),
-            y: macroquad::rand::gen_range(0, 20),
+            x: macroquad::rand::gen_range(0, crate::grid::GRID_SIZE),
+            y: macroquad::rand::gen_range(0, crate::grid::GRID_SIZE),
         };
     }
 }
