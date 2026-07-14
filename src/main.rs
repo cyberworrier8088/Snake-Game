@@ -11,7 +11,7 @@ mod food;
 #[macroquad::main("Snake Game")]
 async fn main() {
     let mut snake = snake::Snake::new();
-    let food = food::Food::new();
+    let mut food = food::Food::new();
 
     let mut move_timer = 0.0;
 
@@ -46,6 +46,7 @@ async fn main() {
 
            if snake.eat(food.position) {
                snake.grow();
+               food.respawn();
                println!("Snake Ate The Food");
            }
 

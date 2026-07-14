@@ -25,4 +25,12 @@ impl Food {
             RED,
         );
     }
+
+
+    pub fn respawn(&mut self) {
+        self.position = Position {
+            x: macroquad::rand::gen_range(0, 20),
+            y: macroquad::rand::gen_range(0, 20),
+        };
+    }
 }
