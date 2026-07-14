@@ -5,11 +5,13 @@ mod grid;
 mod position;
 mod snake;
 mod keyboard;
+mod food;
 
 // this function is main funtion
 #[macroquad::main("Snake Game")]
 async fn main() {
     let mut snake = snake::Snake::new();
+    let food = food::Food::new();
 
     let mut move_timer = 0.0;
 
@@ -41,10 +43,18 @@ async fn main() {
 
         if move_timer >= 0.2 {
            snake.move_snake();
+
+           if snake.eat(food.position) {
+               snake.grow();
+               println!("Snake Ate The Food");
+           }
+
             move_timer = 0.0;
         }
 
         grid::grid();
+
+        food.draw();
 
         snake.draw();
 

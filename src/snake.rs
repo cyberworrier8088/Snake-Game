@@ -104,4 +104,15 @@ impl Snake {
             }
         }
     }
+
+
+    pub fn eat(&self, food_position: Position) -> bool {
+        self.body[0] == food_position
+    }
+
+    pub fn grow(&mut self) {
+        let tail = self.body[self.body.len() - 1];
+
+        self.body.push(tail);
+    }
 }
